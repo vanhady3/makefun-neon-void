@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEON VOID: Arena Defender</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpolygon points='16,2 30,28 16,22 2,28' fill='%2300f0ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="game-container">
+  <canvas id="game" width="1280" height="720"></canvas>
+
+  <!-- In-game HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-left">
+      <div class="hud-label">SCORE</div>
+      <div id="hud-score">0</div>
+      <div class="hud-label small">BEST <span id="hud-best">0</span></div>
+    </div>
+    <div id="hud-center">
+      <div class="hud-label">WAVE</div>
+      <div id="hud-wave">1</div>
+      <div id="hud-wave-progress"><div id="hud-wave-fill"></div></div>
+    </div>
+    <div id="hud-right">
+      <div class="hud-label">LIVES</div>
+      <div id="hud-lives"></div>
+      <button id="mute-btn" title="Mute (M)">SOUND ON</button>
+    </div>
+    <div id="hud-combo" class="hidden">
+      <span id="hud-combo-mult">x1</span>
+      <div id="hud-combo-bar"><div id="hud-combo-fill"></div></div>
+    </div>
+    <div id="hud-powerup" class="hidden">
+      <span id="hud-powerup-icon"></span>
+      <span id="hud-powerup-name"></span>
+      <div id="hud-powerup-bar"><div id="hud-powerup-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Center banner messages (wave clear, etc.) -->
+  <div id="banner" class="hidden"></div>
+
+  <!-- Title / start screen -->
+  <div id="menu-screen" class="overlay">
+    <h1 class="title-neon">NEON VOID</h1>
+    <h2 class="subtitle-neon">ARENA DEFENDER</h2>
+    <p class="tagline">Hold the arena. Break the waves. Chase the combo.</p>
+    <div class="howto">
+      <div class="howto-col">
+        <h3>MOVE</h3>
+        <p>WASD / Arrow keys</p>
+        <h3>AIM &amp; FIRE</h3>
+        <p>Mouse to aim<br>Hold click or Space to shoot</p>
+      </div>
+      <div class="howto-col">
+        <h3>SURVIVE</h3>
+        <p>3 lives. Waves get faster and tougher.<br>Chain kills within 2.5s to raise your combo up to x8.</p>
+        <h3>POWER-UPS</h3>
+        <p>Shield &bull; Rapid Fire &bull; Spread Shot &bull; Bomb</p>
+      </div>
+    </div>
+    <button id="start-btn" class="big-btn">START</button>
+    <p class="hint">Press Enter to start &nbsp;&bull;&nbsp; P to pause &nbsp;&bull;&nbsp; M to mute</p>
+    <p class="best-line">BEST SCORE: <span id="menu-best">0</span></p>
+  </div>
+
+  <!-- Pause screen -->
+  <div id="pause-screen" class="overlay hidden">
+    <h1 class="title-neon small">PAUSED</h1>
+    <p class="tagline">The void waits for no one. Except now.</p>
+    <button id="resume-btn" class="big-btn">RESUME</button>
+    <button id="pause-restart-btn" class="big-btn secondary">RESTART</button>
+    <p class="hint">P or Esc to resume</p>
+  </div>
+
+  <!-- Game over screen -->
+  <div id="gameover-screen" class="overlay hidden">
+    <h1 class="title-neon danger">GAME OVER</h1>
+    <p class="tagline">The void claims another defender.</p>
+    <div class="final-stats">
+      <div class="stat"><span class="stat-label">FINAL SCORE</span><span id="final-score" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">WAVE REACHED</span><span id="final-wave" class="stat-value">1</span></div>
+      <div class="stat"><span class="stat-label">BEST SCORE</span><span id="final-best" class="stat-value">0</span></div>
+      <div class="stat"><span class="stat-label">NEW BEST</span><span id="final-newbest" class="stat-value">-</span></div>
+    </div>
+    <button id="restart-btn" class="big-btn">RESTART</button>
+    <p class="hint">Press R to restart</p>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
